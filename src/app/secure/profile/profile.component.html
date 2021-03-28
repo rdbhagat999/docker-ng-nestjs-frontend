@@ -1,0 +1,64 @@
+<h1 class="h2 mt-3 pb-3 mb-3 border-bottom">Account Information</h1>
+
+<form [formGroup]="infoForm" (ngSubmit)="handleInfoSubmit()">
+  <div class="mb-3">
+    <label for="inputFirstName" class="form-label">First Name</label>
+    <input type="text" id="inputFirstName" class="form-control" placeholder="First name" formControlName="firstName">
+
+    <div id="firstNameHelpBlock" *ngIf="infoF?.firstName.invalid && (infoF?.firstName.touched || infoF?.firstName.dirty)" class="text-danger">
+      <div *ngIf="infoF?.firstName.errors?.required">First Name is required.</div>
+      <div *ngIf="infoF?.firstName.errors?.minlength">First Name must be at least 2 characters long.</div>
+      <div *ngIf="infoF?.firstName.errors?.maxlength">First Name must be at most 21 characters long.</div>
+    </div>
+
+  </div>
+  <div class="mb-3">
+    <label for="inputlastName" class="form-label">Last Name</label>
+    <input type="text" id="inputlastName" class="form-control" placeholder="Last name" formControlName="lastName">
+
+    <div id="lastNameHelpBlock" *ngIf="infoF?.lastName.invalid && (infoF?.lastName.touched || infoF?.lastName.dirty)" class="text-danger">
+      <div *ngIf="infoF?.lastName.errors?.required">Last Name is required.</div>
+      <div *ngIf="infoF?.lastName.errors?.minlength">Last Name must be at least 2 characters long.</div>
+      <div *ngIf="infoF?.lastName.errors?.maxlength">Last Name must be at most 21 characters long.</div>
+    </div>
+
+  </div>
+
+  <div class="mb-3">
+    <label for="inputEmail" class="form-label">Email</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email" formControlName="email">
+
+    <div id="lastNameHelpBlock" *ngIf="infoF?.email.invalid && (infoF?.email.touched || infoF?.email.dirty)" class="text-danger">
+      <div *ngIf="infoF?.email.errors?.required">Email is required.</div>
+      <div *ngIf="infoF?.email.errors?.email">Please provide a valid email.</div>
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<h2 class="h2 mt-3 pt-3 pb-3 mb-3 border-bottom">Change Password</h2>
+<form [formGroup]="pwdUpdateForm" (ngSubmit)="handlePasswordUpdate()">
+  <div class="mb-3">
+    <label for="inputPassword" class="form-label">Password</label>
+    <input type="password" id="inputPassword" class="form-control" [ngClass]="{ 'is-invalid': pwdF.password.invalid && pwdF.password.touched}"  placeholder="Password" formControlName="password">
+
+    <div id="passwordHelpBlock" *ngIf="pwdF.password.invalid && (pwdF.password.touched || pwdF.password.dirty)" class="text-danger">
+      <div *ngIf="pwdF.password.errors?.required">Password is required.</div>
+      <div *ngIf="pwdF.password.errors?.minlength">Password must be at least 6 characters long.</div>
+      <div *ngIf="pwdF.password.errors?.maxlength">Password must be at most 21 characters long.</div>
+    </div>
+
+  </div>
+  <div class="mb-3">
+    <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
+    <input type="password" id="inputConfirmPassword" class="form-control" [ngClass]="{ 'is-invalid': pwdF.password_confirm.invalid && pwdF.password_confirm.touched}" placeholder="Password Confirm" formControlName="password_confirm">
+
+    <div id="pwdUpdateFormHelpBlock" *ngIf="pwdUpdateForm.invalid && (pwdUpdateForm.touched || pwdUpdateForm.dirty)" class="text-danger">
+      <div *ngIf="pwdUpdateForm.errors?.mustMatch">Password and Confirm Password must be match.</div>
+    </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

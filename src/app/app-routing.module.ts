@@ -13,7 +13,11 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
     ]
   },
-  { path: 'dashboard', loadChildren: () => import('./secure/secure.module').then((m) => m.SecureModule) },
+  {
+    path: 'main',
+    canActivate: [],
+    loadChildren: () => import('./secure/secure.module').then((m) => m.SecureModule),
+   },
 ];
 
 @NgModule({

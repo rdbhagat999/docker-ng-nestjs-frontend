@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ConfirmedValidator } from 'src/app/validators/confirmed.validator';
 
 @Component({
   selector: 'app-register',
@@ -24,8 +25,14 @@ export class RegisterComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(21), Validators.pattern('^[a-zA-Z]+$')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]],
-      password_confirm: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]],
+      password_confirm: ['', []],
+    }, {
+      validators: [ConfirmedValidator]
     });
+  }
+
+  get f() {
+    return this.form.controls;
   }
 
   handleSubmit() {

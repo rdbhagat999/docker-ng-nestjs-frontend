@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Customers</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of (users$ | async)">
+        <td>{{ item?.id }}</td>
+        <td>{{ item?.firstName | titlecase }} {{ item?.lastName | titlecase }}</td>
+        <td>{{ item?.email | lowercase }}</td>
+        <td>{{ item?.role?.name | titlecase }}</td>
+        <td> <button type="button" class="btn btn-outline-danger" (click)="handleDelete(item?.id)">Delete</button> </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="prevPage()">Previous</a></li>
+      <li class="page-item"><a class="page-link" (click)="nextPage()">Next</a></li>
+    </ul>
+  </nav>
+
+</div>

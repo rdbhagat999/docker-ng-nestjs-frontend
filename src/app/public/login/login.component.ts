@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -38,10 +38,7 @@ export class LoginComponent implements OnInit {
       .subscribe((res: User) => {
 
         console.info('login_function_response');
-
-        this.authService.authUser(res);
-
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/main']);
 
       }, (error) => {
         console.error('login_function_error');
