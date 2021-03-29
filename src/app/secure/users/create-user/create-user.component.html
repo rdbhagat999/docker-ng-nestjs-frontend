@@ -1,0 +1,53 @@
+<h1 class="h2 mt-3 pb-3 mb-3 border-bottom">Create User</h1>
+
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <div class="mb-3">
+    <label for="inputFirstName" class="form-label">First Name</label>
+    <input type="text" id="inputFirstName" class="form-control" placeholder="First name" formControlName="firstName">
+
+    <div id="firstNameHelpBlock" *ngIf="f?.firstName.invalid && (f?.firstName.touched || f?.firstName.dirty)" class="text-danger">
+      <div *ngIf="f?.firstName.errors?.required">First Name is required.</div>
+      <div *ngIf="f?.firstName.errors?.minlength">First Name must be at least 2 characters long.</div>
+      <div *ngIf="f?.firstName.errors?.maxlength">First Name must be at most 21 characters long.</div>
+      <div *ngIf="f?.firstName.errors?.pattern">Only characters are allowed.</div>
+    </div>
+
+  </div>
+  <div class="mb-3">
+    <label for="inputlastName" class="form-label">Last Name</label>
+    <input type="text" id="inputlastName" class="form-control" placeholder="Last name" formControlName="lastName">
+
+    <div id="lastNameHelpBlock" *ngIf="f?.lastName.invalid && (f?.lastName.touched || f?.lastName.dirty)" class="text-danger">
+      <div *ngIf="f?.lastName.errors?.required">Last Name is required.</div>
+      <div *ngIf="f?.lastName.errors?.minlength">Last Name must be at least 2 characters long.</div>
+      <div *ngIf="f?.lastName.errors?.maxlength">Last Name must be at most 21 characters long.</div>
+      <div *ngIf="f?.lastName.errors?.pattern">>Only characters are allowed.</div>
+    </div>
+
+  </div>
+
+  <div class="mb-3">
+    <label for="inputEmail" class="form-label">Email</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email" formControlName="email">
+
+    <div id="lastNameHelpBlock" *ngIf="f?.email.invalid && (f?.email.touched || f?.email.dirty)" class="text-danger">
+      <div *ngIf="f?.email.errors?.required">Email is required.</div>
+      <div *ngIf="f?.email.errors?.email">Please provide a valid email.</div>
+    </div>
+
+  </div>
+
+  <div class="mb-3">
+    <select class="form-select" aria-label="Role selector" formControlName="roleId">
+      <option value="">Select Role</option>
+      <option [ngValue]="item?.id" *ngFor="let item of (roles$ | async)">{{ item?.name | titlecase }}</option>
+    </select>
+
+    <div id="roleHelpBlock" *ngIf="f?.roleId.invalid && (f?.roleId.touched || f?.roleId.dirty)" class="text-danger">
+      <div *ngIf="f?.roleId.errors?.required">Role is required.</div>
+    </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

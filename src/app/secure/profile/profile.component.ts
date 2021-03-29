@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
       .subscribe((res: User) => {
 
         console.info('handleInfoSubmit_response');
-        this.router.navigate(['/main']);
+        this.router.navigate(['/main/users']);
 
       }, (error) => {
         console.error('handleInfoSubmit_error');
@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
       .subscribe((res: User) => {
 
         console.info('handlePasswordUpdate_response');
-        this.router.navigate(['/main']);
+        this.router.navigate(['/main/users']);
 
       }, (error) => {
         console.error('handlePasswordUpdate_error');

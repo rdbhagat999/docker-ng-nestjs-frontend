@@ -9,6 +9,7 @@
       <div *ngIf="infoF?.firstName.errors?.required">First Name is required.</div>
       <div *ngIf="infoF?.firstName.errors?.minlength">First Name must be at least 2 characters long.</div>
       <div *ngIf="infoF?.firstName.errors?.maxlength">First Name must be at most 21 characters long.</div>
+      <div *ngIf="infoF?.firstName.errors?.pattern">Only characters are allowed.</div>
     </div>
 
   </div>
@@ -20,6 +21,7 @@
       <div *ngIf="infoF?.lastName.errors?.required">Last Name is required.</div>
       <div *ngIf="infoF?.lastName.errors?.minlength">Last Name must be at least 2 characters long.</div>
       <div *ngIf="infoF?.lastName.errors?.maxlength">Last Name must be at most 21 characters long.</div>
+      <div *ngIf="infoF?.lastName.errors?.pattern">Only characters are allowed.</div>
     </div>
 
   </div>

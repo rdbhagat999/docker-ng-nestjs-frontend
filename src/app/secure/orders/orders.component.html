@@ -1,5 +1,6 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">Orders</h1>
+  <button type="button" class="btn btn-outline-primary" routerLink="/main/orders/create">Add</button>
 </div>
 
 <div class="table-responsive">
@@ -21,7 +22,10 @@
         <td>{{ orders?.email | lowercase }}</td>
         <td>{{ orders?.createdAt | date }}</td>
         <td>{{ orders?.total | currency }}</td>
-        <td> <button type="button" class="btn btn-outline-danger" (click)="handleDelete(item?.id)">Delete</button> </td>
+        <td>
+          <button type="button" class="btn btn-sm btn-outline-primary" [routerLink]="['/main/orders',item?.id,'edit']">Edit</button>
+          <!-- <button type="button" class="btn btn-sm btn-outline-danger" (click)="handleDelete(item?.id)">Delete</button> -->
+        </td>
       </tr>
     </tbody>
   </table>
