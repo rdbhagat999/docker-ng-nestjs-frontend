@@ -20,6 +20,8 @@ import { CreateProductComponent } from './products/create-product/create-product
 import { UpdateProductComponent } from './products/update-product/update-product.component';
 import { CreateOrderComponent } from './orders/create-order/create-order.component';
 import { UpdateOrderComponent } from './orders/update-order/update-order.component';
+import { UploadComponent } from './upload/upload.component';
+import { UploadPreviewComponent } from './components/upload-preview/upload-preview.component';
 
 const routes: Routes = [
   { path: '', component: SecureComponent,
@@ -77,7 +79,9 @@ const routes: Routes = [
     CreateProductComponent,
     UpdateProductComponent,
     CreateOrderComponent,
-    UpdateOrderComponent
+    UpdateOrderComponent,
+    UploadComponent,
+    UploadPreviewComponent
   ],
   imports: [
     CommonModule,

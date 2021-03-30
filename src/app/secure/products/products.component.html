@@ -18,7 +18,7 @@
     <tbody>
       <tr *ngFor="let item of (products$ | async)">
         <td>{{ item?.id }}</td>
-        <td><img class="img-thumbnail" [src]="'https://via.placeholder.com/50X30'" alt="product image"></td>
+        <td><img class="img-fluid img-thumbnail" style="width: 5rem;" [src]="item?.image" alt="product image"></td>
         <td>{{ item?.title | titlecase }}</td>
         <td>{{ item?.description | lowercase }}</td>
         <td>{{ item?.price | currency }}</td>

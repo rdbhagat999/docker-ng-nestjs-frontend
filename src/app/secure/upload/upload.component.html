@@ -1,0 +1,8 @@
+<div class="input-group">
+  <label for="inputUpload" class="btn btn-outline-success">Choose Image
+    <input type="file" id="inputUpload" class="form-control d-none" accept=".jpg, .jpeg, .png" placeholder="Upload Image"
+     (change)="handleFileChange($event.target.files)">
+  </label>
+  <button type="button" class="btn btn-primary" (click)="handleUpload()">Upload</button>
+</div>
+

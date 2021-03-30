@@ -1,1 +1,59 @@
-<p>update-product works!</p>
+<h1 class="h2 mt-3 pb-3 mb-3 border-bottom">Update Product</h1>
+
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+
+  <div class="mb-3">
+    <label for="inputTitle" class="form-label">Title</label>
+    <input type="text" id="inputTitle" class="form-control" placeholder="Title" formControlName="title">
+
+    <div id="titleHelpBlock" *ngIf="f?.title.invalid && (f?.title.touched || f?.title.dirty)" class="text-danger">
+      <div *ngIf="f?.title.errors?.required">Title is required.</div>
+      <div *ngIf="f?.title.errors?.minlength">Title must be at least 2 characters long.</div>
+      <div *ngIf="f?.title.errors?.maxlength">Title must be at most 21 characters long.</div>
+      <div *ngIf="f?.title.errors?.pattern">Only characters are allowed.</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="inputDescription" class="form-label">Description</label>
+    <textarea class="form-control" id="inputDescription" rows="3" placeholder="Description" formControlName="description"></textarea>
+
+    <div id="descriptionHelpBlock" *ngIf="f?.description.invalid && (f?.description.touched || f?.description.dirty)" class="text-danger">
+      <div *ngIf="f?.description.errors?.required">Description is required.</div>
+      <div *ngIf="f?.description.errors?.minlength">Description must be at least 2 characters long.</div>
+      <div *ngIf="f?.description.errors?.maxlength">Description must be at most 21 characters long.</div>
+      <div *ngIf="f?.description.errors?.pattern">Only characters are allowed.</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="inputPrice" class="form-label">Price</label>
+    <input type="text" id="inputPrice" class="form-control" placeholder="Price" formControlName="price">
+
+    <div id="priceHelpBlock" *ngIf="f?.price.invalid && (f?.price.touched || f?.price.dirty)" class="text-danger">
+      <div *ngIf="f?.price.errors?.required">Price is required.</div>
+      <div *ngIf="f?.price.errors?.minlength">Price must be at least 1 digit long.</div>
+      <div *ngIf="f?.price.errors?.maxlength">Price must be at most 5 digits long.</div>
+      <div *ngIf="f?.price.errors?.pattern">Only digits are allowed.</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="inputImage" class="form-label">Image</label>
+
+    <div class="input-group">
+      <input type="text" id="inputImage" class="form-control" placeholder="Image URL" formControlName="image">
+      <app-upload (uploaded)="handleUploadedEvent($event)" (previewImage)="handleImagePreview($event)"></app-upload>
+    </div>
+
+    <app-upload-preview [preview]="previewURL"></app-upload-preview>
+
+    <div id="imageHelpBlock" *ngIf="f?.image.invalid && (f?.image.touched || f?.image.dirty)" class="text-danger">
+      <div *ngIf="f?.image.errors?.required">Image is required.</div>
+      <div *ngIf="f?.image.errors?.image">Please provide a valid image.</div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
