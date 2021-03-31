@@ -23,6 +23,11 @@
       <div *ngIf="f.lastName.errors?.maxlength">Password must be at most 21 characters long.</div>
     </div>
 
+    <div id="emailHelpBlock" *ngIf="f.email.invalid && (f.email.touched || f.email.dirty)" class="text-danger">
+      <div *ngIf="f.email.errors?.required">Email is required.</div>
+      <div *ngIf="f.email.errors?.email">Enter a valid email.</div>
+    </div>
+
     <div id="passwordHelpBlock" *ngIf="f.password.invalid && (f.password.touched || f.password.dirty)" class="text-danger">
       <div *ngIf="f.password.errors?.required">Password is required.</div>
       <div *ngIf="f.password.errors?.minlength">Password must be at least 6 characters long.</div>

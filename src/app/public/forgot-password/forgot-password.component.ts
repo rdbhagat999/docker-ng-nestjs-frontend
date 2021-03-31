@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/models';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss', '../public.component.scss']
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss', '../public.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
 
   form: FormGroup;
+  cls: string;
+  message: string;
 
   constructor(private readonly fb: FormBuilder, private readonly router: Router, private readonly authService: AuthService) { }
 
@@ -22,7 +23,6 @@ export class LoginComponent implements OnInit {
   initForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
     });
   }
 
@@ -38,16 +38,23 @@ export class LoginComponent implements OnInit {
 
     if(this.form.valid) {
       console.log(this.form.value);
-      this.authService.login(this.form.value)
-      .subscribe((res: User) => {
+      this.authService.forgotPassword(this.form.value)
+      .subscribe((res: string) => {
 
-        console.info('login_function_response');
-        this.router.navigate(['/main']);
+        console.info('handleSubmit_response');
+
+        this.cls = 'success';
+        this.message = 'Email sent successfully!';
 
       }, (error) => {
-        console.error('login_function_error');
+
+        console.error('handleSubmit_error');
+
+        this.cls = 'danger';
+        this.message = 'Email does not exists!';
+
       }, () => {
-        console.info('login_function_complete');
+        console.info('handleSubmit_complete');
       }, );
     }
 
