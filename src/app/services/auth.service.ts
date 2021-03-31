@@ -21,9 +21,6 @@ export class AuthService implements OnDestroy  {
   constructor(private readonly http: HttpClient, private readonly router: Router, private readonly route: ActivatedRoute) {
     this._user$ = new BehaviorSubject(null);
     this.user$ = this._user$.asObservable();
-
-    this.user();
-
    }
 
   setAuthUser(user: User) {
@@ -36,6 +33,14 @@ export class AuthService implements OnDestroy  {
 
   login(userData) {
     return this.http.post<User>(`${this.apiURL}/api/login`, {...userData});
+  }
+
+  forgotPassword(email: string) {
+    return this.http.post<string>(`${this.apiURL}/api/forgot`, email );
+  }
+
+  resetPassword(data: any) {
+    return this.http.post<string>(`${this.apiURL}/api/reset`, data );
   }
 
   user(): void {
@@ -51,7 +56,7 @@ export class AuthService implements OnDestroy  {
       }
 
     }, error => {
-      this.router.navigate(['/login']);
+      // this.router.navigate(['/login']);
     });
   }
 
